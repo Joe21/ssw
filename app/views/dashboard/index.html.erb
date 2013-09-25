@@ -1,0 +1,16 @@
+<h1>Sleep Smoke Weather</h1>
+
+<% @users.each do |user| %>
+<ul>
+	<li>Username: <%= user.name %>
+		<br/>
+		<% user.smokes.each do |smoke| %>
+			<%= smoke.quantity %> Cigarettes Smoked on <%= smoke.date %>
+		<% end %>
+		<br/>
+		<% user.sleeps.each do |sleep| %>
+			<%= sleep.hours_slept %> Hours slept on <%= sleep.date %>
+		<% end %>
+	</li>
+</ul>
+<% end %>
