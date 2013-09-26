@@ -2,6 +2,7 @@ class DashboardController < ApplicationController
 
 	include HTTParty 
 
+
 # root        		/                       dashboard#index
 	def index
 		@users = User.all
@@ -17,24 +18,6 @@ class DashboardController < ApplicationController
 		response = HTTParty.get(url)
 		data = response.parsed_response
 		@temp = data['rss']["channel"]['item']['condition']['temp']
-
-		# The img src of the weather status is embedded in a string
-		# url = "http://weather.yahooapis.com/forecastrss?w=#{woeid}"
-		# response = HTTParty.get(url)
-		# data = response.parsed_response
-		# @gif = data['rss']["channel"]['item']['condition']['temp']
-
-
-# https://developer.apps.yahoo.com/projects
-# register your app
-# http://where.yahooapis.com/v1/places.q('92648')?appid=dj0yJmk9SmFycmxEWUpuYTViJmQ9WVdrOWJFMXZTMm95Tl...
-# build that URL ^^^
-# put your own key after appid=
-# and replace 92648 with whatever zip code is entered
-# that gives you the woeid, used to look up the yahoo weather
-# http://weather.yahooapis.com/forecastrss?w=12796572
-# then add the woeid after w= to retrieve the weather for that location
-# look for temp="
 
 	end
 
