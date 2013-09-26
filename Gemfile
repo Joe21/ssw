@@ -7,7 +7,7 @@ gem 'pry'
 gem 'devise'
 
 gem 'jquery-rails'
-gem "skeleton-rails", "~> 0.1.0"
+# gem "skeleton-rails", "~> 0.1.0"
 
 group :development do
   gem 'sqlite3'
