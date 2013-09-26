@@ -2,22 +2,27 @@ class DashboardController < ApplicationController
 
 	include HTTParty 
 
+	before_filter :authenticate_user!, only: [:index, :new, :create]
 
 # root        		/                       dashboard#index
 	def index
-		@users = User.all
 
-		# obtain woeid for Flatiron District (12761342)
-		url = "http://where.yahooapis.com/v1/places.q('10010')?appid=dj0yJmk9MlViRFMzYTViYUcwJmQ9WVdrOVZtZGhUVlpWTm04bWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD1mYg--"
-		response = HTTParty.get(url)
-		data = response.parsed_response
-		woeid = data['places']['place']['woeid']
+		if user_signed_in?
+			# obtain woeid for Flatiron District (12761342)
+			url = "http://where.yahooapis.com/v1/places.q('10010')?appid=dj0yJmk9MlViRFMzYTViYUcwJmQ9WVdrOVZtZGhUVlpWTm04bWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD1mYg--"
+			response = HTTParty.get(url)
+			data = response.parsed_response
+			woeid = data['places']['place']['woeid']
 
-		# obtain the temp via the woeid
-		url = "http://weather.yahooapis.com/forecastrss?w=#{woeid}"
-		response = HTTParty.get(url)
-		data = response.parsed_response
-		@temp = data['rss']["channel"]['item']['condition']['temp']
+			# obtain the temp via the woeid
+			url = "http://weather.yahooapis.com/forecastrss?w=#{woeid}"
+			response = HTTParty.get(url)
+			data = response.parsed_response
+			@temp = data['rss']["channel"]['item']['condition']['temp']
+
+		else
+			redirect_to '/'
+		end
 
 	end
 
@@ -27,17 +32,18 @@ class DashboardController < ApplicationController
 
 # log_entry POST	/log_entry(.:format)	dashboard#create
 	def create
-		@user = User.find(current_user.id)
 
-		@smoke = Smoke.create(params[:smoke])
-		@sleep = Sleep.create(params[:sleep])
+		smoke = Smoke.new(params[:smoke])
+		smoke.date = Time.now
+		smoke.save
 
-		@user.smokes << @smoke
-		@user.sleep << @sleep
+		sleep = Sleep.new(params[:sleep])
+		sleep.date = Time.now - 1.day
+		sleep.save
+
+		current_user.smokes << smoke
+		current_user.sleeps << sleep
 
 		redirect_to '/'
 	end
-
-
-
 end

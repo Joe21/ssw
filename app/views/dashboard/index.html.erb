@@ -1,19 +1,21 @@
 <h1>Sleep Smoke Weather</h1>
-
-<% @users.each do |user| %>
-<ul>
-	<li>Username: <%= user.name %>
-		<br/>
-		<% user.smokes.each do |smoke| %>
-			<%= smoke.quantity %> Cigarettes Smoked on <%= smoke.date %>
-		<% end %>
-		<br/>
-		<% user.sleeps.each do |sleep| %>
-			<%= sleep.hours_slept %> Hours slept on <%= sleep.date %>
-		<% end %>
-	</li>
-</ul>
-
 <h1>The temperature in the Flatiron District is currently <%= @temp %> degrees</h1>
+
+<% if user_signed_in? %>
+	<ul>
+		<% counter = 0 %>
+		<% while counter < [current_user.smokes.length, current_user.sleeps.length].min %>
+			<li>You smoked <%= current_user.smokes[counter].quantity %> cigarettes on <%= current_user.smokes[counter].date %>.</li>
+			<li>You slept <%= current_user.sleeps[counter].hours_slept %> hours on <%= current_user.sleeps[counter].date %>.</li> 
+			<br/>
+			<% counter += 1 %>
+		<% end %>
+	</ul>
+
+<%= link_to('Create new log', entry_path) %>
+	
+<% else %>
+
+	Welcome to my app!
 
 <% end %>

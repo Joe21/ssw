@@ -11,13 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130925195217) do
+ActiveRecord::Schema.define(:version => 20130926184717) do
 
   create_table "sleeps", :force => true do |t|
-    t.integer  "hours_slept"
+    t.decimal  "hours_slept", :precision => 8, :scale => 2
     t.datetime "date"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.integer  "user_id"
   end
 

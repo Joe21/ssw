@@ -1,13 +1,15 @@
-<form action='/log_entry' method='post'>
-	<div>
-		<label>How Many Cigarettes Did you Smoke Today?</label>
-		<input type="text" name="smoke[quantity]"/>
-	</div>
-	<div>
-		<label>How many hours did you sleep last night?</label>
-		<input type="text" name="sleep[hours_slept]"/>
-	</div>
-	<div>
-		<input type="submit"/>
-	</div>
-</form>
+<%= form_tag(log_entry_path) do %>
+
+<div>
+	<label>How Many Cigarettes did you smoke today?</label>
+	<input type="text" name="smoke[quantity]"/>
+</div>
+<div>
+	<label>How many hours did you sleep last night?</label>
+	<input type="text" name="sleep[hours_slept]"/>
+</div>
+<div>
+	<input type="submit"/>
+</div>
+
+<% end %>
