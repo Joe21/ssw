@@ -102,6 +102,7 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
+    skeleton-rails (0.1.0)
     slop (3.4.6)
     sprockets (2.2.2)
       hike (~> 1.2)
@@ -134,5 +135,6 @@ DEPENDENCIES
   pry
   rails (= 3.2.13)
   rspec-rails (~> 2.0)
+  skeleton-rails (~> 0.1.0)
   sqlite3
   uglifier

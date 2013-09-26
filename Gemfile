@@ -1,13 +1,13 @@
 source 'https://rubygems.org'
 ruby '1.9.3'
 gem 'rails', '3.2.13'
-# gem 'sqlite3'
+gem 'sqlite3'
 gem 'httparty'
 gem 'pry'
 gem 'devise'
 
 gem 'jquery-rails'
-
+gem "skeleton-rails", "~> 0.1.0"
 
 group :development do
   gem 'sqlite3'

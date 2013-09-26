@@ -1,0 +1,12 @@
+.container {
+	background-color: skyblue;
+}
+
+.title h1 {
+	border: 3px solid;
+	border-radius: 10px;
+	font-family: Helvetica;
+	font-weight: bold;
+	text-align: center;
+}
+
