@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130926184717) do
+ActiveRecord::Schema.define(:version => 20130926235455) do
 
   create_table "sleeps", :force => true do |t|
     t.decimal  "hours_slept", :precision => 8, :scale => 2
@@ -24,9 +24,10 @@ ActiveRecord::Schema.define(:version => 20130926184717) do
   create_table "smokes", :force => true do |t|
     t.integer  "quantity"
     t.datetime "date"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.integer  "user_id"
+    t.integer  "temperature"
   end
 
   create_table "users", :force => true do |t|

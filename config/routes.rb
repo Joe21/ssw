@@ -5,6 +5,7 @@ root :to => 'dashboard#index'
 
 get '/entry', to: 'dashboard#new'
 post '/log_entry', to: 'dashboard#create'
+post '/log_delete/:counter', to: 'dashboard#destroy', as: 'log_delete'
 
 
 #         new_user_session GET    /users/sign_in(.:format)       devise/sessions#new
@@ -23,5 +24,6 @@ post '/log_entry', to: 'dashboard#create'
 #                     root        /                              dashboard#index
 #                    entry GET    /entry(.:format)               dashboard#new
 #                log_entry POST   /log_entry(.:format)           dashboard#create
+              # log_delete POST   /log_delete/:counter(.:format) dashboard#destroy
 
 end

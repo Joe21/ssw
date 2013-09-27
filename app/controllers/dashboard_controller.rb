@@ -33,8 +33,20 @@ class DashboardController < ApplicationController
 # log_entry POST	/log_entry(.:format)	dashboard#create
 	def create
 
+		url = "http://where.yahooapis.com/v1/places.q('10010')?appid=dj0yJmk9MlViRFMzYTViYUcwJmQ9WVdrOVZtZGhUVlpWTm04bWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD1mYg--"
+		response = HTTParty.get(url)
+		data = response.parsed_response
+		woeid = data['places']['place']['woeid']
+
+		# obtain the temp via the woeid
+		url = "http://weather.yahooapis.com/forecastrss?w=#{woeid}"
+		response = HTTParty.get(url)
+		data = response.parsed_response
+		@temp = data['rss']["channel"]['item']['condition']['temp']
+
 		smoke = Smoke.new(params[:smoke])
 		smoke.date = Time.now
+		smoke.temperature = @temp
 		smoke.save
 
 		sleep = Sleep.new(params[:sleep])
@@ -46,4 +58,12 @@ class DashboardController < ApplicationController
 
 		redirect_to '/'
 	end
+
+	def destroy
+    
+    	current_user.smokes[params[:counter].to_i].destroy
+    	current_user.sleeps[params[:counter].to_i].destroy
+	    redirect_to '/'
+  	end
+
 end

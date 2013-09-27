@@ -13,15 +13,20 @@
 	<ul>
 		<% counter = 0 %>
 		<% while counter < [current_user.smokes.length, current_user.sleeps.length].min %>
-			<li>You smoked <%= current_user.smokes[counter].quantity %> cigarettes on <%= current_user.smokes[counter].date %>.</li>
-			<li>You slept <%= current_user.sleeps[counter].hours_slept %> hours on <%= current_user.sleeps[counter].date %>.</li> 
-			<br/>
+			<li>You smoked <%= current_user.smokes[counter].quantity %> cigarettes on <%= current_user.smokes[counter].date %>.
+			</li>
+			<li>You slept <%= current_user.sleeps[counter].hours_slept %> hours on <%= current_user.sleeps[counter].date %>.
+			</li> 
+			<li>The temperature on <%= current_user.smokes[counter].date %> was <%= current_user.smokes[counter].temperature %> degrees.
+			</li>
+			<%= button_to 'Delete', log_delete_path(counter) %>
+			<br>
 			<% counter += 1 %>
 		<% end %>
 	</ul>
 
 <%= link_to('Create new log', entry_path) %>
-	
+
 <% else %>
 
 	Welcome to my app!
