@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130926235455) do
+ActiveRecord::Schema.define(:version => 20130927043835) do
+
+  create_table "likes", :force => true do |t|
+    t.integer  "counter"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "sleeps", :force => true do |t|
     t.decimal  "hours_slept", :precision => 8, :scale => 2

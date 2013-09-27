@@ -18,3 +18,5 @@ smoke_monday = Smoke.create(quantity: 10, date: Time.now - 1.day, temperature: 6
 sleep_monday = Sleep.create(hours_slept: 3.5, date: Time.now - 2.day)
 joe.smokes << smoke_monday
 joe.sleeps << sleep_monday
+
+like = Like.create(counter: 1)
