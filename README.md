@@ -1,0 +1,3 @@
+### **SSW** is a web application derived from a real life scenario to assist individuals with smoking cessation programs by providing user's the ability to track smoking habits along with lifestyle variables.
+
+The SSW App allows users to create a daily smoker's log. The log captures the amount of cigarettes smoked that day, along with the amount of hours slept the previous night. In addition, the app utilizes the Yahoo Weather API to capture and record the daily temperature at the Flatiron District.
